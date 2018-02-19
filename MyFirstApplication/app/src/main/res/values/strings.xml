@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyFirstApplication</string>
+    <string name="card1">Card 1</string>
+    <string name="card2">Card 2</string>
+    <string name="card3">Card 3</string>
+    <string name="display1">Display 1</string>
+    <string name="display2">Display 2</string>
+    <string name="emptyString"></string>
+    <string name="sendMessage">Send</string>
+    <string name="score">Score</string>
+    <string name="player1Label">Player 1:</string>
+    <string name="player2Label">Player 2:</string>
+    <string name="playersLabel">Players</string>
+    <string name="playersCardsRemaining">Cards Left</string>
+    <string name="player1CardsLeft">0</string>
+    <string name="player2CardsLeft">0</string>
+    <string name="warCard1">War Card 1</string>
+    <string name="warCard2">War Card 2</string>
+    <string name="warButton">War</string>
+</resources>
