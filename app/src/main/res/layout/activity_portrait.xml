@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.batest39.myfirstapplication.MainActivity">
@@ -13,18 +12,18 @@
         android:layout_height="98dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="548dp"
-        app:layout_constraintHorizontal_bias="0.093"
+        android:layout_marginTop="292dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/WarButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/warButton"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
@@ -37,6 +36,7 @@
             android:layout_height="85dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/warCard1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +54,7 @@
             android:layout_marginTop="8dp"
             android:contentDescription="@string/warCard2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/WarButton"
             app:layout_constraintStart_toEndOf="@+id/warCard1"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/c1" />
@@ -190,16 +190,14 @@
         android:layout_width="115dp"
         android:layout_height="85dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/card1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.992"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/c1" />
 
     <ImageView
@@ -207,36 +205,29 @@
         android:layout_width="115dp"
         android:layout_height="85dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/card2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card1"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.991"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/c1" />
-
-    <ImageView
-        android:id="@+id/card3"
-        android:layout_width="115dp"
-        android:layout_height="85dp"
-        android:contentDescription="@string/card3"
-        app:srcCompat="@drawable/c1"
-        tools:layout_editor_absoluteX="717dp"
-        tools:layout_editor_absoluteY="1042dp" />
 
     <ImageView
         android:id="@+id/display2"
         android:layout_width="115dp"
         android:layout_height="85dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/display2"
-        app:layout_constraintBottom_toTopOf="@+id/card3"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238"
+        app:layout_constraintVertical_bias="0.649"
         app:srcCompat="@drawable/c1" />
 
     <ImageView
@@ -250,10 +241,27 @@
         android:contentDescription="@string/display1"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toStartOf="@+id/display2"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
+        app:layout_constraintVertical_bias="0.649"
+        app:srcCompat="@drawable/c1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/card3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/card2"
+        app:layout_constraintTop_toBottomOf="@+id/display2"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/c1" />
 
 </android.support.constraint.ConstraintLayout>
