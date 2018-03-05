@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -25,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
                 Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_landscape);
             setCards();
+            getListeners();
             getRandomCards(card1, card2, card3);
         } else{
             setContentView(R.layout.activity_portrait);
             setCards();
+            getListeners();
             getRandomCards(card1, card2, card3);
         }
         //this leaves the keyboard hidden on load
@@ -37,26 +40,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCards(){
-        this.card1 = (ImageView) findViewById(R.id.card1);
-        this.card2 = (ImageView) findViewById(R.id.card2);
-        this.card3 = (ImageView) findViewById(R.id.card3);
+        this.card1 = findViewById(R.id.card1);
+        this.card2 = findViewById(R.id.card2);
+        this.card3 = findViewById(R.id.card3);
 
-        this.display1 = (ImageView) findViewById(R.id.display1);
+        this.display1 = findViewById(R.id.display1);
         this.display1.setImageDrawable(null);
 
-        this.display2 = (ImageView) findViewById(R.id.display2);
+        this.display2 = findViewById(R.id.display2);
         this.display2.setImageDrawable(null);
 
-        this.warCard1 = (ImageView) findViewById(R.id.warCard1);
+        this.warCard1 = findViewById(R.id.warCard1);
         this.warCard1.setImageDrawable(null);
 
-        this.warCard2 = (ImageView) findViewById(R.id.warCard2);
+        this.warCard2 = findViewById(R.id.warCard2);
         this.warCard2.setImageDrawable(null);
     }
 
     private void getRandomCards(ImageView card1, ImageView card2, ImageView card3){
         TypedArray cardImageArray = getResources().obtainTypedArray(R.array.cards);
-        //TypedArray cardsInHand = getResources().obtainTypedArray(R.array.cardsInHand);
         ImageView[] cardsInHand = new ImageView[3];
 
         cardsInHand[0] = card1;
@@ -66,14 +68,52 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++){
             int rand = (int) (Math.random() * cardImageArray.length());
-            //((ImageView)findViewById(cardsInHand.getResourceId(i, R.id.card1))).setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
-            cardsInHand[i].setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
+            cardsInHand[i].setImageResource(cardImageArray.getResourceId(rand, -1));
         }
     }
 
-/*    public void onTouch(View view){
-        if (view == findViewById(this.card1.getId())){
 
-        }
-    }*/
+    public void getListeners(){
+        card1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view.getId() == card1.getId()){
+                    if(display1.getDrawable() != null){
+                        display1.setImageDrawable(card1.getDrawable());
+                    }
+                    else{
+                        display2.setImageDrawable(card1.getDrawable());
+                    }
+                }
+            }
+        });
+
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view.getId() == card2.getId()){
+                    if(display1.getDrawable() != null){
+                        display1.setImageDrawable(card2.getDrawable());
+                    }
+                    else{
+                        display2.setImageDrawable(card2.getDrawable());
+                    }
+                }
+            }
+        });
+
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view.getId() == card3.getId()){
+                    if(display1.getDrawable() != null){
+                        display1.setImageDrawable(card3.getDrawable());
+                    }
+                    else{
+                        display2.setImageDrawable(card3.getDrawable());
+                    }
+                }
+            }
+        });
+    }
 }
