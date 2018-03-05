@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
         if(getResources().getConfiguration().orientation==
                 Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_landscape);
+            getRandomCards();
         } else{
             setContentView(R.layout.activity_portrait);
+            getRandomCards();
         }
         //this leaves the keyboard hidden on load
         getWindow().setSoftInputMode(
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++){
             int rand = (int) (Math.random() * cardImageArray.length());
-            ((ImageView)findViewById(cardsInHand.getResourceId(i, R.id.card1))).setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
+            ((ImageView)findViewById(cardsInHand.getResourceId(i + 1, R.id.card1))).setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
         }
     }
 }
