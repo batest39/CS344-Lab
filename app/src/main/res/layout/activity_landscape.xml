@@ -213,11 +213,11 @@
             android:text="@string/warButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/WarCard2"
+            app:layout_constraintStart_toEndOf="@+id/warCard2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/WarCard1"
+            android:id="@+id/warCard1"
             android:layout_width="115dp"
             android:layout_height="85dp"
             android:layout_marginBottom="8dp"
@@ -231,7 +231,7 @@
             app:srcCompat="@drawable/c1" />
 
         <ImageView
-            android:id="@+id/WarCard2"
+            android:id="@+id/warCard2"
             android:layout_width="115dp"
             android:layout_height="85dp"
             android:layout_marginBottom="8dp"
@@ -240,7 +240,7 @@
             android:layout_marginTop="8dp"
             android:contentDescription="@string/warCard2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/WarCard1"
+            app:layout_constraintStart_toEndOf="@+id/warCard1"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/c1" />
     </android.support.constraint.ConstraintLayout>
