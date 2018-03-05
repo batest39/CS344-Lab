@@ -27,11 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void getRandomCards(){
         TypedArray cardImageArray = getResources().obtainTypedArray(R.array.cards);
-        TypedArray cardsInHand = getResources().obtainTypedArray(R.array.cardsInHand);
+        //TypedArray cardsInHand = getResources().obtainTypedArray(R.array.cardsInHand);
+        ImageView[] cardsInHand = new ImageView[3];
+
+        cardsInHand[0] = (ImageView) findViewById(R.id.card1);
+        cardsInHand[1] = (ImageView) findViewById(R.id.card2);
+        cardsInHand[2] = (ImageView) findViewById(R.id.card3);
+
 
         for (int i = 0; i < 3; i++){
             int rand = (int) (Math.random() * cardImageArray.length());
-            ((ImageView)findViewById(cardsInHand.getResourceId(i + 1, R.id.card1))).setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
+            //((ImageView)findViewById(cardsInHand.getResourceId(i, R.id.card1))).setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
+            cardsInHand[i].setImageResource(cardImageArray.getResourceId(rand, R.drawable.c1));
         }
     }
 }
