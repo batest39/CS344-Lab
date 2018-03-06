@@ -1,13 +1,18 @@
 package com.example.batest39.myfirstapplication;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,19 +23,24 @@ public class MainActivity extends AppCompatActivity {
     private ImageView display2;
     private ImageView warCard1;
     private ImageView warCard2;
+    private Button warButton;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getResources().getConfiguration().orientation==
                 Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_landscape);
             setCards();
+            this.warButton = findViewById(R.id.warButton);
+            warButton.setEnabled(false);
             getListeners();
             getRandomCards(card1, card2, card3);
         } else{
             setContentView(R.layout.activity_portrait);
             setCards();
+            this.warButton = findViewById(R.id.warButton);
+            warButton.setEnabled(false);
             getListeners();
             getRandomCards(card1, card2, card3);
         }
@@ -39,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
+    //Initializes the cards and hides all of the ones that aren't in the players hand
     private void setCards(){
         this.card1 = findViewById(R.id.card1);
         this.card2 = findViewById(R.id.card2);
@@ -78,12 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(view.getId() == card1.getId()){
-                    if(display1.getDrawable() != null){
-                        display1.setImageDrawable(card1.getDrawable());
-                    }
-                    else{
-                        display2.setImageDrawable(card1.getDrawable());
-                    }
+                    getConfirmDialog(view, card1);
                 }
             }
         });
@@ -92,12 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(view.getId() == card2.getId()){
-                    if(display1.getDrawable() != null){
-                        display1.setImageDrawable(card2.getDrawable());
-                    }
-                    else{
-                        display2.setImageDrawable(card2.getDrawable());
-                    }
+                    getConfirmDialog(view, card2);
                 }
             }
         });
@@ -106,14 +107,37 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(view.getId() == card3.getId()){
-                    if(display1.getDrawable() != null){
-                        display1.setImageDrawable(card3.getDrawable());
-                    }
-                    else{
-                        display2.setImageDrawable(card3.getDrawable());
-                    }
+                    getConfirmDialog(view, card3);
                 }
             }
         });
+    }
+
+    private void getConfirmDialog(View view, ImageView inCard){
+        final ImageView cardClicked = inCard;
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        if(display1.getDrawable() == null){
+                            display1.setImageDrawable(cardClicked.getDrawable());
+                        }
+                        else{
+                            display2.setImageDrawable(cardClicked.getDrawable());
+                        }
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        builder.setMessage("Are you sure you want to play this card?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 }

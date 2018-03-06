@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/WarButton"
+            android:id="@+id/warButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -54,7 +54,7 @@
             android:layout_marginTop="8dp"
             android:contentDescription="@string/warCard2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/WarButton"
+            app:layout_constraintEnd_toStartOf="@+id/warButton"
             app:layout_constraintStart_toEndOf="@+id/warCard1"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/c1" />
