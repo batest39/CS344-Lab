@@ -11,18 +11,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView card1;
-    private ImageView card2;
-    private ImageView card3;
-    private ImageView display1;
-    private ImageView display2;
-    private ImageView warCard1;
-    private ImageView warCard2;
+    private ImageView card1, card2, card3;
+    private ImageView display1, display2;
+    private ImageView warCard1, warCard2;
     private Button warButton;
 
 
@@ -34,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
             setCards();
             this.warButton = findViewById(R.id.warButton);
             warButton.setEnabled(false);
+            Button chatButton = findViewById(R.id.chatButton);
+            chatButton.setEnabled(true);
+            EditText chatTextBox = findViewById(R.id.inputText);
+            chatTextBox.setText("");
+            TextView sentMessage = findViewById(R.id.chatMessage);
+            sentMessage.setText("");
+            getChatListeners(chatButton, chatTextBox, sentMessage);
             getListeners();
             getRandomCards(card1, card2, card3);
         } else{
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private void getRandomCards(ImageView card1, ImageView card2, ImageView card3){
         TypedArray cardImageArray = getResources().obtainTypedArray(R.array.cards);
         ImageView[] cardsInHand = new ImageView[3];
+        int[] randomCards = new int[3];
 
         cardsInHand[0] = card1;
         cardsInHand[1] = card2;
@@ -79,12 +85,21 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++){
             int rand = (int) (Math.random() * cardImageArray.length());
-            cardsInHand[i].setImageResource(cardImageArray.getResourceId(rand, -1));
+            randomCards[i] = cardImageArray.getResourceId(rand, -1);
+            while (i > 0 && randomCards[i - 1] == randomCards[i]){ //eliminates duplicates
+                rand = (int) (Math.random() * cardImageArray.length());
+                randomCards[i] = cardImageArray.getResourceId(rand, -1);
+            }
         }
+
+        cardsInHand[0].setImageResource(randomCards[0]);
+        cardsInHand[1].setImageResource(randomCards[1]);
+        cardsInHand[2].setImageResource(randomCards[2]);
     }
 
 
     public void getListeners(){
+        //Card listeners
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +123,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(view.getId() == card3.getId()){
                     getConfirmDialog(view, card3);
+                }
+            }
+        });
+    }
+
+    public void getChatListeners(Button inChatButton, EditText inChatTextBox, TextView inSentMessage){
+        final Button chatButton = inChatButton;
+        final EditText chatTextBox = inChatTextBox;
+        final TextView sentMessage = inSentMessage;
+        //Chat listeners
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view.getId() == chatButton.getId() && (chatTextBox.getText() + "").equals("")){
+                    sentMessage.setText(chatTextBox.getText());
+                    chatTextBox.setText("");
                 }
             }
         });
