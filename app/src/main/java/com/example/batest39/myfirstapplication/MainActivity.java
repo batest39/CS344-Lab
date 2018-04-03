@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView display1, display2;
     //private ImageView warCard1, warCard2;
     //private Button warButton;
+    private boolean isWarTime;
     private FragmentManager frag;
 
 
@@ -33,22 +34,20 @@ public class MainActivity extends AppCompatActivity {
                 Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_landscape);
             setCards();
-            //this.warButton = findViewById(R.id.warButton);
-            //warButton.setEnabled(false);
             Button chatButton = findViewById(R.id.chatButton);
             chatButton.setEnabled(true);
             EditText chatTextBox = findViewById(R.id.inputText);
             chatTextBox.setText("");
             TextView sentMessage = findViewById(R.id.chatMessage);
             sentMessage.setText("");
+            this.isWarTime = false;
             getChatListeners(chatButton, chatTextBox, sentMessage);
             getListeners();
             getRandomCards(card1, card2, card3);
         } else{
             setContentView(R.layout.activity_portrait);
+            this.isWarTime = false;
             setCards();
-            //this.warButton = findViewById(R.id.warButton);
-            //warButton.setEnabled(false);
             getListeners();
             getRandomCards(card1, card2, card3);
         }
@@ -69,12 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         this.display2 = findViewById(R.id.display2);
         this.display2.setImageDrawable(null);
-
-        //this.warCard1 = findViewById(R.id.warCard1);
-        //this.warCard1.setImageDrawable(null);
-
-        //this.warCard2 = findViewById(R.id.warCard2);
-        //this.warCard2.setImageDrawable(null);
     }
 
     private void getRandomCards(ImageView card1, ImageView card2, ImageView card3){
@@ -107,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(view.getId() == card1.getId()){
+                if(view.getId() == card1.getId() && !isWarTime){
                     getConfirmDialog(view, card1);
                 }
             }
@@ -116,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(view.getId() == card2.getId()){
+                if(view.getId() == card2.getId() && !isWarTime){
                     getConfirmDialog(view, card2);
                 }
             }
@@ -125,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         card3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(view.getId() == card3.getId()){
+                if(view.getId() == card3.getId() && !isWarTime){
                     getConfirmDialog(view, card3);
                 }
             }
@@ -145,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
                     String chatText = chatTextBox.getText().toString().toLowerCase();
                     boolean equal = chatTextBox.getText().toString().toLowerCase().equals("math");
                     if(chatTextBox.getText().toString().toLowerCase().equals("math")){
+                        chatTextBox.setText("");
+                        isWarTime = true;
                         FragmentTransaction fragTrans = frag.beginTransaction();
                         fragTrans.replace(R.id.globalContainer, new MathAreaFragment());
                         fragTrans.commit();
