@@ -2,12 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/globalContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.batest39.myfirstapplication.MainActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/chatContainer"
         android:layout_width="147dp"
         android:layout_height="299dp"
         android:layout_marginBottom="8dp"
@@ -50,11 +51,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/emptyString"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/chatContainer"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-        app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:layout_constraintLeft_toLeftOf="@+id/chatContainer"
+        app:layout_constraintRight_toRightOf="@+id/chatContainer"
+        app:layout_constraintTop_toTopOf="@+id/chatContainer"
         app:layout_constraintVertical_bias="0.991" />
 
     <Button
@@ -66,11 +67,11 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/sendMessage"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/chatContainer"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="@+id/inputText"
-        app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:layout_constraintRight_toRightOf="@+id/chatContainer"
+        app:layout_constraintTop_toTopOf="@+id/chatContainer"
         app:layout_constraintVertical_bias="0.991" />
 
     <android.support.constraint.ConstraintLayout
@@ -200,62 +201,6 @@
         app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
         app:layout_constraintVertical_bias="0.0" />
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="382dp"
-        android:layout_height="127dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.161"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/warButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/warButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/warCard2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/warCard1"
-            android:layout_width="115dp"
-            android:layout_height="85dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/warCard1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/c1" />
-
-        <ImageView
-            android:id="@+id/warCard2"
-            android:layout_width="115dp"
-            android:layout_height="85dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/warCard2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/warCard1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/c1" />
-    </android.support.constraint.ConstraintLayout>
-
     <ImageView
         android:id="@+id/card1"
         android:layout_width="115dp"
@@ -309,8 +254,8 @@
         android:layout_width="115dp"
         android:layout_height="85dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:contentDescription="@string/card2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card1"

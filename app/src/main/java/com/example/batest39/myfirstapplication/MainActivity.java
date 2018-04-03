@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView card1, card2, card3;
     private ImageView display1, display2;
-    private ImageView warCard1, warCard2;
-    private Button warButton;
+    //private ImageView warCard1, warCard2;
+    //private Button warButton;
+    private FragmentManager frag;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_landscape);
             setCards();
-            this.warButton = findViewById(R.id.warButton);
-            warButton.setEnabled(false);
+            //this.warButton = findViewById(R.id.warButton);
+            //warButton.setEnabled(false);
             Button chatButton = findViewById(R.id.chatButton);
             chatButton.setEnabled(true);
             EditText chatTextBox = findViewById(R.id.inputText);
@@ -44,11 +47,12 @@ public class MainActivity extends AppCompatActivity {
         } else{
             setContentView(R.layout.activity_portrait);
             setCards();
-            this.warButton = findViewById(R.id.warButton);
-            warButton.setEnabled(false);
+            //this.warButton = findViewById(R.id.warButton);
+            //warButton.setEnabled(false);
             getListeners();
             getRandomCards(card1, card2, card3);
         }
+        this.frag = getSupportFragmentManager();
         //this leaves the keyboard hidden on load
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -66,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         this.display2 = findViewById(R.id.display2);
         this.display2.setImageDrawable(null);
 
-        this.warCard1 = findViewById(R.id.warCard1);
-        this.warCard1.setImageDrawable(null);
+        //this.warCard1 = findViewById(R.id.warCard1);
+        //this.warCard1.setImageDrawable(null);
 
-        this.warCard2 = findViewById(R.id.warCard2);
-        this.warCard2.setImageDrawable(null);
+        //this.warCard2 = findViewById(R.id.warCard2);
+        //this.warCard2.setImageDrawable(null);
     }
 
     private void getRandomCards(ImageView card1, ImageView card2, ImageView card3){
@@ -136,9 +140,18 @@ public class MainActivity extends AppCompatActivity {
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(view.getId() == chatButton.getId() && (chatTextBox.getText() + "").equals("")){
-                    sentMessage.setText(chatTextBox.getText());
-                    chatTextBox.setText("");
+                boolean isEquap = !(chatTextBox.getText() + "").equals("");
+                if(view.getId() == chatButton.getId() && !(chatTextBox.getText() + "").equals("")){
+                    String chatText = chatTextBox.getText().toString().toLowerCase();
+                    boolean equal = chatTextBox.getText().toString().toLowerCase().equals("math");
+                    if(chatTextBox.getText().toString().toLowerCase().equals("math")){
+                        FragmentTransaction fragTrans = frag.beginTransaction();
+                        fragTrans.replace(R.id.globalContainer, new MathAreaFragment());
+                        fragTrans.commit();
+                    } else {
+                        sentMessage.setText(chatTextBox.getText());
+                        chatTextBox.setText("");
+                    }
                 }
             }
         });

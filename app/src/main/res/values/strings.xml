@@ -17,4 +17,7 @@
     <string name="warCard1">War Card 1</string>
     <string name="warCard2">War Card 2</string>
     <string name="warButton">War</string>
+
+    <string name="submit">"Submit"</string>
+    <string name="history">"History"</string>
 </resources>
