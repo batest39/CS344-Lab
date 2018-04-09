@@ -1,5 +1,6 @@
 package com.example.batest39.myfirstapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
