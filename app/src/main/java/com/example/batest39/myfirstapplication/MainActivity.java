@@ -144,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
                         FragmentTransaction fragTrans = frag.beginTransaction();
                         fragTrans.replace(R.id.globalContainer, new MathAreaFragment());
                         fragTrans.commit();
+                    } else if (chatTextBox.getText().toString().toLowerCase().equals("table")) {
+                        getFragmentManager().popBackStack();
                     } else {
                         sentMessage.setText(chatTextBox.getText());
                         chatTextBox.setText("");

@@ -23,7 +23,7 @@ public class MathAreaFragment extends Fragment {
 
     private int num1, num2;
     private char symbol;
-    private List<String> listOfEquations;
+    private ArrayList<String> listOfEquations;
     private Button submitButton;
     private TextView problemText;
     private TextView historyString;
@@ -45,6 +45,11 @@ public class MathAreaFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_math_area, container, false);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle bundle){
+        super.onSaveInstanceState(bundle);
+        bundle.putStringArrayList("listOfEquations", listOfEquations);
+    }
 
     //treated as a constructor
     @Override
